@@ -1,0 +1,248 @@
+/* =========================================================
+   Honda Motors — Shared Stylesheet
+   Automotive / engineered aesthetic
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --ink:#0e0e10;          /* asphalt / near-black   */
+  --ink-2:#1a1c22;        /* raised dark surface    */
+  --red:#e4002b;          /* Honda racing red       */
+  --red-dark:#b30022;
+  --paper:#f5f5f3;        /* off-white background   */
+  --panel:#ffffff;        /* card surface           */
+  --line:#e2e2df;         /* hairline border        */
+  --muted:#6b6b70;        /* secondary text         */
+  --steel:#c9ccce;        /* metallic silver        */
+  --shadow:0 10px 30px rgba(14,14,16,.10);
+  --radius:14px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Inter',system-ui,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,.brand{font-family:'Saira',sans-serif;letter-spacing:.01em;line-height:1.1}
+
+img{max-width:100%;display:block}
+
+a{color:inherit;text-decoration:none}
+
+.wrap{width:min(1160px,92%);margin-inline:auto}
+
+/* ---------- Header + Navigation ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:var(--ink);
+  border-bottom:3px solid var(--red);
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  color:#fff;font-weight:800;font-size:1.5rem;text-transform:uppercase;
+}
+.brand img{width:34px;height:34px}
+.brand span{color:var(--red)}
+
+.nav-links{
+  display:flex;align-items:center;gap:6px;list-style:none;
+}
+.nav-links a{
+  position:relative;
+  display:block;
+  padding:10px 16px;
+  color:#d7d8db;
+  font-weight:600;
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:color .25s ease;
+}
+/* sliding underline hover effect */
+.nav-links a::after{
+  content:"";
+  position:absolute;left:16px;right:16px;bottom:4px;
+  height:2px;background:var(--red);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .28s ease;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible{color:#fff}
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after{transform:scaleX(1)}
+.nav-links a.active{color:#fff}
+.nav-links a.active::after{transform:scaleX(1)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Saira',sans-serif;font-weight:700;font-size:.9rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  padding:13px 26px;border:none;border-radius:8px;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .2s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-dark);box-shadow:0 8px 20px rgba(228,0,43,.35)}
+.btn-outline{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn-outline:hover{background:var(--ink);color:#fff}
+.btn-ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+
+/* ---------- Section scaffolding ---------- */
+.section{padding:72px 0}
+.eyebrow{
+  font-family:'Saira',sans-serif;font-weight:700;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--red);
+  display:inline-block;margin-bottom:10px;
+}
+.section h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:14px}
+.lead{color:var(--muted);max-width:60ch;font-size:1.02rem}
+
+/* ---------- HOME: hero uses FLEXBOX ---------- */
+.hero{background:var(--ink);color:#fff;overflow:hidden}
+.hero-inner{
+  display:flex;                 /* <-- required display:flex */
+  align-items:center;
+  gap:40px;
+  padding:60px 0 68px;
+  flex-wrap:wrap;
+}
+.hero-copy{flex:1 1 340px}
+.hero-art{flex:1 1 420px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;text-transform:uppercase}
+.hero h1 em{color:var(--red);font-style:normal}
+.hero p{color:#b9bbc2;margin:18px 0 28px;max-width:46ch}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art img{filter:drop-shadow(0 24px 40px rgba(0,0,0,.5))}
+
+/* stat strip — flexbox */
+.stats{
+  display:flex;flex-wrap:wrap;gap:20px;
+  border-top:1px solid #2a2c33;padding-top:26px;margin-top:36px;
+}
+.stat{flex:1 1 120px}
+.stat b{font-family:'Saira',sans-serif;font-size:2rem;color:#fff;display:block}
+.stat span{font-size:.8rem;color:#9a9ca3;text-transform:uppercase;letter-spacing:.1em}
+
+/* feature row — flexbox */
+.feature{
+  display:flex;align-items:center;gap:48px;flex-wrap:wrap;
+}
+.feature .feature-media{flex:1 1 320px}
+.feature .feature-text{flex:1 1 320px}
+.feature img{border-radius:var(--radius);box-shadow:var(--shadow)}
+
+.cards{display:flex;gap:22px;flex-wrap:wrap}
+.card{
+  flex:1 1 240px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px;transition:transform .2s ease,box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .num{font-family:'Saira';color:var(--red);font-weight:800;font-size:1.1rem;letter-spacing:.1em}
+.card h3{margin:8px 0 8px;font-size:1.25rem}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* ---------- PRODUCTS: uses CSS GRID ---------- */
+.product-grid{
+  display:grid;                                        /* <-- required display:grid */
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:26px;
+}
+.product{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.product:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#d7d7d3}
+.product-photo{background:linear-gradient(135deg,#f0f0ee,#e4e5e2);padding:22px 22px 8px}
+.product-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tag{
+  align-self:flex-start;font-family:'Saira';font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--red);
+  background:rgba(228,0,43,.08);padding:4px 10px;border-radius:999px;
+}
+.product h3{font-size:1.35rem}
+.spec{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;
+  font-size:.82rem;color:var(--muted);margin-top:2px;
+}
+.spec b{color:var(--ink);font-weight:600}
+.price-row{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:12px;border-top:1px solid var(--line);
+}
+.price{font-family:'Saira';font-weight:800;font-size:1.4rem}
+.price small{color:var(--muted);font-weight:500;font-size:.75rem}
+
+/* quote output line under grid */
+.quote-out{
+  margin-top:26px;padding:18px 22px;border-radius:10px;
+  background:var(--ink);color:#fff;font-family:'Saira';font-weight:600;
+  display:none;
+}
+.quote-out.show{display:block;animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:flex;gap:40px;flex-wrap:wrap}
+.contact-form{flex:1 1 360px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.contact-aside{flex:1 1 280px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:600;font-size:.85rem;margin-bottom:6px}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:9px;
+  font-family:inherit;font-size:.95rem;background:#fbfbfa;transition:border-color .2s ease;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+.form-msg{margin-top:14px;font-weight:600;font-size:.92rem;min-height:1.2em}
+.form-msg.ok{color:#137a2b}
+.form-msg.err{color:var(--red)}
+
+.info-card{
+  background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px;margin-bottom:20px;
+}
+.info-card h3{color:#fff;margin-bottom:14px}
+.info-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.info-list li{display:flex;gap:12px;font-size:.95rem;color:#cfd0d5}
+.info-list .k{color:var(--red);font-family:'Saira';font-weight:700;min-width:74px}
+.map-img{border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--ink);color:#c7c8cd;margin-top:20px}
+.footer-top{
+  display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;
+  padding:46px 0 30px;border-bottom:1px solid #26282f;
+}
+.footer-col{flex:1 1 180px}
+.footer-col h4{font-family:'Saira';color:#fff;font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.footer-col a{display:block;color:#9a9ca3;font-size:.9rem;padding:4px 0;transition:color .2s ease}
+.footer-col a:hover{color:var(--red)}
+.footer-brand p{color:#9a9ca3;font-size:.9rem;margin-top:10px;max-width:32ch}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:18px 0;font-size:.82rem;color:#7c7e86}
+
+/* ---------- Responsive ---------- */
+@media (max-width:720px){
+  .nav{flex-wrap:wrap;gap:8px}
+  .nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap}
+  .nav-links a{padding:8px 12px}
+  .section{padding:52px 0}
+  .hero-inner{padding:40px 0}
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto}
+}
